@@ -1,0 +1,4 @@
+{"name": "@node-mail/utils", "version": "1.0.0", "description": "通用工具库", "type": "module", "main": "./dist/index.js", "types": "./dist/index.d.ts", "exports": {".": {"import": "./dist/index.js", "types": "./dist/index.d.ts"}}, "files": ["dist"], "scripts": {"build": "tsc", "type-check": "tsc --noEmit", "lint": "eslint . --ext .ts --fix"}, "devDependencies": {
+    "typescript": "~5.6.3",
+    "@types/node": "^22.10.5"
+  }}

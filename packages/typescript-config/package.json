@@ -1,0 +1,1 @@
+{"name": "@node-mail/typescript-config", "version": "1.0.0", "description": "TypeScript 配置", "files": ["base.json", "next.json", "vue.json", "react.json"], "peerDependencies": {"typescript": "~5.6.3"}}

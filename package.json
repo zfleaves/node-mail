@@ -1,31 +1,43 @@
 {
-  "name": "zfleave-admin-backend",
+  "name": "node-mail-monorepo",
   "version": "1.0.0",
-  "description": "电商管理后台服务 - 基于 Express 和 Node.js",
-  "main": "src/index.js",
-  "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
-  },
-  "keywords": [
-    "express",
-    "ecommerce",
-    "admin",
-    "backend"
+  "description": "电商管理系统 - 基于 Turborepo 的 Monorepo 项目",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
   ],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.2",
-    "multer": "^2.1.1",
-    "mysql2": "^3.6.5",
-    "redis": "^5.11.0"
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:backend": "pnpm --filter @node-mail/backend dev",
+    "dev:frontend": "pnpm --filter @node-mail/frontend dev",
+    "build": "turbo run build",
+    "build:backend": "pnpm --filter @node-mail/backend build",
+    "build:frontend": "pnpm --filter @node-mail/frontend build",
+    "lint": "turbo run lint",
+    "lint:backend": "pnpm --filter @node-mail/backend lint",
+    "lint:frontend": "pnpm --filter @node-mail/frontend lint",
+    "test": "turbo run test",
+    "test:backend": "pnpm --filter @node-mail/backend test",
+    "test:frontend": "pnpm --filter @node-mail/frontend test",
+    "type-check": "turbo run type-check",
+    "type-check:frontend": "pnpm --filter @node-mail/frontend type-check",
+    "clean": "turbo run clean",
+    "clean:backend": "pnpm --filter @node-mail/backend clean",
+    "clean:frontend": "pnpm --filter @node-mail/frontend clean",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "prepare": "husky install"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
-  }
+    "turbo": "^2.3.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11",
+    "prettier": "^3.4.2"
+  },
+  "engines": {
+    "node": ">=20.19.0 || >=22.12.0",
+    "npm": ">=10.8.1",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.15.0"
 }
