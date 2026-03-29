@@ -11,10 +11,72 @@ const { uploadFiles } = require('../config/upload');
 const { getFileInfo, getStorageStats } = require('../services/fileService');
 const path = require('path');
 const { uploadDir } = require('../config/upload');
+const {
+  uploadBase64,
+  uploadBase64Batch,
+  getFileInfo: getFileBase64Info,
+  getFileData,
+  deleteFile
+} = require('../controllers/uploadBase64Controller');
+
+/**
+ * @route   POST /api/uploads/base64
+ * @desc    上传单个文件（base64 方式）
+ * @access  Private (需要 uploads:create 权限)
+ */
+router.post(
+  '/base64',
+  authenticate,
+  requirePermission('uploads:create'),
+  uploadBase64
+);
+
+/**
+ * @route   POST /api/uploads/base64/batch
+ * @desc    批量上传文件（base64 方式）
+ * @access  Private (需要 uploads:create 权限)
+ */
+router.post(
+  '/base64/batch',
+  authenticate,
+  requirePermission('uploads:create'),
+  uploadBase64Batch
+);
+
+/**
+ * @route   GET /api/uploads/file/:id
+ * @desc    获取文件数据（base64）
+ * @access  Public
+ */
+router.get('/file/:id', getFileData);
+
+/**
+ * @route   GET /api/uploads/file/:id/info
+ * @desc    获取文件信息
+ * @access  Private (需要 uploads:read 权限)
+ */
+router.get(
+  '/file/:id/info',
+  authenticate,
+  requirePermission('uploads:read'),
+  getFileBase64Info
+);
+
+/**
+ * @route   DELETE /api/uploads/file/:id
+ * @desc    删除文件
+ * @access  Private (需要 uploads:delete 权限)
+ */
+router.delete(
+  '/file/:id',
+  authenticate,
+  requirePermission('uploads:delete'),
+  deleteFile
+);
 
 /**
  * @route   POST /api/uploads/products
- * @desc    上传商品图片和视频
+ * @desc    上传商品图片和视频（FormData 方式）
  * @access  Private (需要 products:create 权限)
  */
 router.post(
